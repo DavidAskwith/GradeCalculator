@@ -1,3 +1,4 @@
+// Adds a new input section for entering grades
 document.querySelector('#addGrade').addEventListener('click', () => {
 
   let temp = document.querySelector('#tempGradeInput');
@@ -7,13 +8,14 @@ document.querySelector('#addGrade').addEventListener('click', () => {
 
 });
 
+// Delegates the actions for the grade calculations
 document.querySelector('#calculate').addEventListener('click', () => {
 
   let desiredGrade = parseInt(document.querySelector('#desiredGrade').value) / 100;
   let grades = getGrades();
-  let currentWeight = getCurrentWeight(grades);
-  let currentGrade = getCurrentGrade(grades, currentWeight);
-  let gradeNeeded = getGradeNeeded(desiredGrade, currentGrade, currentWeight);
+  let currentWeight = calcCurrentWeight(grades);
+  let currentGrade = calcCurrentGrade(grades, currentWeight);
+  let gradeNeeded = calcGradeNeeded(desiredGrade, currentGrade, currentWeight);
 
   document.querySelector('#currentGrade')
     .innerText = currentGrade * 100 + '%';
@@ -26,6 +28,7 @@ document.querySelector('#calculate').addEventListener('click', () => {
 
 });
 
+// Resets the form for a clean start of calculations
 document.querySelector('#reset').addEventListener('click', () => {
 
   let grades = document.querySelector('#grades');
@@ -42,14 +45,15 @@ document.querySelector('#reset').addEventListener('click', () => {
 
 });
 
+// Gets the grades from the form and returns the grades
 function getGrades() {
 
   let grades = [];
 
   document.querySelectorAll('#grades > .gradeWeightPair').forEach((elem, i) => {
 
-    let grade = parseInt(elem.querySelector('.grade').value);
-    let weight = parseInt(elem.querySelector('.weight').value);
+    let grade = parseFloat(elem.querySelector('.grade').value);
+    let weight = parseFloat(elem.querySelector('.weight').value);
 
     if(!isNaN(grade) && !isNaN(weight)){
 
@@ -63,15 +67,19 @@ function getGrades() {
 
 }
 
-function getCurrentGrade(grades, currentWeight) {
+// Calculates the current grade based on the input values
+function calcCurrentGrade(grades, currentWeight) {
 
   return (grades.reduce((accumGrade, grade) => {
-    return accumGrade += grade[0] * grade[1] / 100;
+    console.log(`grade: ${grade}`)
+    console.log(`grade: ${accumGrade}`)
+
+    return accumGrade + grade[0] * grade[1] / 100;
   }, 0) / currentWeight) / 100;
 
 }
 
-function getCurrentWeight(grades) {
+function calcCurrentWeight(grades) {
 
   return grades.reduce((currentWeight, grade) => {
     return currentWeight + grade[1] / 100;
@@ -79,12 +87,9 @@ function getCurrentWeight(grades) {
   
 }
 
-function getGradeNeeded(desiredGrade, currentGrade, currentWeight) {
-  console.log(desiredGrade)
-  console.log(currentGrade)
-  console.log(currentWeight)
+function calcGradeNeeded(desiredGrade, currentGrade, currentWeight) {
 
-  return ((desiredGrade - currentGrade  * currentWeight) / currentWeight);
-
+  return ((desiredGrade) - (currentGrade)  * currentWeight) / (1 - currentWeight);
+  
 }
 
