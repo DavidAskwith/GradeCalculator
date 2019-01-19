@@ -1,0 +1,55 @@
+<html >
+<head>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./normalize.css">
+  <title>Grade Calculator</title>
+</head>
+<body>
+
+  <header>
+    Grade Calculator
+  </header>
+
+  <main>
+      
+  <div class="content">
+      <h5><b>Current Grade: </b><span id="currentGrade"></span></h5>
+      <h5><b>Current Percentage Weight: </b><span id="currentWeight"></span></h5>
+      <h5><b>Grade Needed in Remainder: </b><span id="gradeNeeded"></span></h5>
+
+
+      <input id="desiredGrade" type="number" placeholder="Desired Grade">
+
+      <div id="grades">
+        <div class="gradeWeightPair">
+            <input class="grade" type="number" placeholder="Grade" min="0" max="100">
+            <input class="weight" type="number" placeholder="Percentage Weight" min="0" max="100">
+        </div>
+      </div>
+  </div>
+
+  </main>
+
+  <footer>
+      <div class="btnContainer">
+        <button id="addGrade" class="">Add Grade</button>
+        <button id="calculate" class="">Calculate</button>
+        <button id="reset" class="">Reset</button>
+      </div>
+  </footer>
+
+
+  <template id="tempGradeInput">
+
+        <div class="gradeWeightPair">
+            <input class="grade" type="number" placeholder="Grade" min="0" max="100">
+            <input class="weight" type="number" placeholder="Percentage Weight" min="0" max="100">
+        </div>
+
+
+  </template>
+
+  <script src="./main.js"></script>
+
+</body>
+</html>
