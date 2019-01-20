@@ -1,23 +1,105 @@
 * {
   box-sizing: border-box;
-}
-
-header, footer {
-  width: 100%;
-  height: 50px;
-  background-color: #4bacb8;
-}
-  
-footer {
-  position: fixed;
-  bottom: 0px;
-}
-
-main { 
   border: 1px solid red;
 }
+
+body {
+}
+
+
+.card {
+    padding: 10px 25px;
+    background-color: white;
+    box-shadow: 2px 2px 5px black;
+}
+
+h1 {
+    font-size: 3em !important;
+    margin: 10 !important;
+}
+
+.scroll-container {
+    height: 50%;
+    overflow-y: auto;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.scroll-container > .gradeWeightPair {
+    margin: 10px 0;
+}
+
 .content {
-  margin: auto;
-  width: 500px;
-  border: 1px solid red;
+    text-align: center;
+    position: relative;
+    background-color: grey;
+    padding: 10 60px 50px;
 }
+
+@media screen and (max-width: 800px) {
+    
+    .scroll-container input {
+        width: 80px;
+    }
+}
+@media screen and (min-width: 800px) {
+    .content {
+      margin: 30px auto;
+      width: 700px;
+      height: calc(100% - 60px);
+      box-shadow: 2px 2px 5px black;
+      padding: 10 100px 50px;
+    }
+    
+    .scroll-container input {
+        width: 150px;
+    }
+    
+}
+
+/* Scroll Bar */
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #888; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #555; 
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button
+{
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number]
+{
+  -moz-appearance: textfield;
+}
+
+.scroll-container input {
+    margin: 0 5px;
+}
+
+input {
+    text-align: center;
+    border: 1px solid #eee;
+    height: 42px;
+    line-height: 1.65;
+}
+
+input:focus {
+  outline: 0;
+}
+input:focus::-webkit-input-placeholder { /* WebKit browsers */
+        color: transparent;
+    }
