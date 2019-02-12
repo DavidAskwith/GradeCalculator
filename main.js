@@ -71,9 +71,6 @@ function getGrades() {
 function calcCurrentGrade(grades, currentWeight) {
 
   return (grades.reduce((accumGrade, grade) => {
-    console.log(`grade: ${grade}`)
-    console.log(`grade: ${accumGrade}`)
-
     return accumGrade + grade[0] * grade[1] / 100;
   }, 0) / currentWeight) / 100;
 
