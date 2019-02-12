@@ -1,8 +1,8 @@
 // Adds a new input section for entering grades
 document.querySelector('#addGrade').addEventListener('click', () => {
 
-  let temp = document.querySelector('#tempGradeInput');
-  let clon = temp.content.cloneNode(true);
+  const temp = document.querySelector('#tempGradeInput');
+  const clon = temp.content.cloneNode(true);
 
   document.querySelector('#grades').appendChild(clon);
 
@@ -17,14 +17,7 @@ document.querySelector('#calculate').addEventListener('click', () => {
   let currentGrade = calcCurrentGrade(grades, currentWeight);
   let gradeNeeded = calcGradeNeeded(desiredGrade, currentGrade, currentWeight);
 
-  document.querySelector('#currentGrade')
-    .innerText = currentGrade * 100 + '%';
-
-  document.querySelector('#currentWeight')
-    .innerText = currentWeight * 100 + '%';
-
-  document.querySelector('#gradeNeeded')
-    .innerText = gradeNeeded * 100 + '%';
+  displayGrades(currentGrade, currentWeight, gradeNeeded);
 
 });
 
@@ -44,6 +37,32 @@ document.querySelector('#reset').addEventListener('click', () => {
   document.querySelector('#gradeNeeded').innerText = '';
 
 });
+
+function displayGrades(currentGrade, currentWeight, gradeNeeded) {
+
+  const elGradeNeeded = document.querySelector('#gradeNeeded');
+  const elCurrentGrade = document.querySelector('#currentGrade');
+  const elCurrentWeight = document.querySelector('#currentWeight');
+
+  if(!isNaN(currentGrade)) {
+    elCurrentGrade.innerText = currentGrade * 100 + '%';
+  } else {
+    elCurrentGrade.innerText = 'N/A';
+  }
+
+  if(!isNaN(currentWeight) && currentWeight != 0) {
+    elCurrentWeight.innerText = currentWeight * 100 + '%';
+  } else {
+    elCurrentWeight.innerText = 'N/A';
+  }
+
+  if(!isNaN(gradeNeeded)) {
+    elGradeNeeded.innerText = gradeNeeded * 100 + '%';
+  } else {
+    elGradeNeeded.innerText = 'N/A';
+  }
+
+}
 
 // Gets the grades from the form and returns the grades
 function getGrades() {
@@ -76,6 +95,7 @@ function calcCurrentGrade(grades, currentWeight) {
 
 }
 
+
 function calcCurrentWeight(grades) {
 
   return grades.reduce((currentWeight, grade) => {
@@ -89,4 +109,3 @@ function calcGradeNeeded(desiredGrade, currentGrade, currentWeight) {
   return ((desiredGrade) - (currentGrade)  * currentWeight) / (1 - currentWeight);
   
 }
-
